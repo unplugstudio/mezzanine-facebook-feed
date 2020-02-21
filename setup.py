@@ -23,7 +23,7 @@ if sys.argv[:2] == ["setup.py", "bump"]:
     except IndexError:
         print("Please provide a version number in the format X.X.X")
         sys.exit(1)
-    with open("alttext/__init__.py", "w") as f:
+    with open("fbfeed/__init__.py", "w") as f:
         f.write('__version__ = "%s"\n' % version)
     with open("package.json", "w") as f:
         f.write('{ "version": "%s" }' % version)
