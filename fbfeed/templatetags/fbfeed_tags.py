@@ -1,9 +1,12 @@
 from __future__ import absolute_import, unicode_literals
 
+import logging
+
 from mezzanine import template
 
 from ..models import Access, GraphAPIError
 
+logger = logging.getLogger(__name__)
 register = template.Library()
 
 
@@ -23,4 +26,5 @@ def fbfeed_photos(name=None, limit=10):
     try:
         return access.get_photos(limit=limit)
     except GraphAPIError:
+        logger.exception("Facebook API error while rendering photos in template")
         return []
