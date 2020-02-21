@@ -66,10 +66,7 @@ class Access(TimeStamped):
 
     name = models.CharField("Name", max_length=200)
     facebook_id = models.CharField(
-        "Facebook ID",
-        max_length=100,
-        default="me",
-        help_text="Use 'me' to view your own posts",
+        "Facebook ID", max_length=100, default="me", help_text="Use 'me' to view your own posts"
     )
     token = models.CharField("Access token", max_length=500, blank=True)
     token_type = models.CharField("Token type", max_length=200, blank=True)
@@ -108,11 +105,7 @@ class Access(TimeStamped):
         Build the URL that invokes the Facebook login dialog
         """
         return "https://www.facebook.com/v6.0/dialog/oauth?" + urlencode(
-            {
-                "client_id": self.app_id,
-                "redirect_uri": self.get_redirect_url(),
-                "state": self.id,
-            }
+            {"client_id": self.app_id, "redirect_uri": self.get_redirect_url(), "state": self.id}
         )
 
     def get_token_from_code(self, code):
