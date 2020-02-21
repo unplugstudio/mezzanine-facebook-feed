@@ -2,7 +2,6 @@
 
 from __future__ import print_function
 
-import os
 import subprocess
 import sys
 
@@ -23,12 +22,11 @@ if sys.argv[:2] == ["setup.py", "bump"]:
     except IndexError:
         print("Please provide a version number in the format X.X.X")
         sys.exit(1)
+
+    old = open("fbfeed/__init__.py").read()
     with open("fbfeed/__init__.py", "w") as f:
-        f.write('__version__ = "%s"\n' % version)
-    with open("package.json", "w") as f:
-        f.write('{ "version": "%s" }' % version)
+        f.write(old.replace(__version__, version))
     subprocess.check_call("conventional-changelog -p angular -i CHANGELOG.md -s", shell=True)
-    os.remove("package.json")
     subprocess.check_call('git commit -am "chore: bump version to %s"' % version)
     sys.exit()
 
