@@ -48,6 +48,7 @@ setup(
     version=__version__,
     description="Connect Mezzanine sites to Facebook feeds",
     long_description=long_description,
+    long_description_content_type="text/markdown",
     url="https://github.com/unplugstudio/mezzanine-facebook-feed",
     author="Unplug Studio",
     author_email="hello@unplug.studio",
