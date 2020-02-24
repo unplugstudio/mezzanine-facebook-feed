@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals, absolute_import
 
+from builtins import str
+
 from django.conf.urls import url
 from django.contrib import admin
 from django.shortcuts import redirect, get_object_or_404
