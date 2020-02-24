@@ -15,24 +15,11 @@ with open("README.md", encoding="utf-8") as f:
     long_description = f.read()
 
 # Bump version and generate CHANGELOG
-# npm install -g conventional-changelog-cli
 if sys.argv[:2] == ["setup.py", "bump"]:
-    try:
-        version = sys.argv[2]
-    except IndexError:
-        print("Please provide a version number in the format X.X.X")
-        sys.exit(1)
-
-    old = open("fbfeed/__init__.py").read()
-    with open("fbfeed/__init__.py", "w") as f:
-        f.write(old.replace(__version__, version))
-    subprocess.check_call("conventional-changelog -p angular -i CHANGELOG.md -s", shell=True)
-    subprocess.check_call('git commit -am "chore: bump version to %s"' % version)
-    sys.exit()
+    subprocess.check_call("standard-version")  # npm install -g standard-version
 
 # Tag and release the package to PyPI
 if sys.argv[:2] == ["setup.py", "release"]:
-    subprocess.check_call("git tag v%s" % __version__)
     subprocess.check_call("git push")
     subprocess.check_call("git push --tags")
     subprocess.check_call("rm -rf dist/")

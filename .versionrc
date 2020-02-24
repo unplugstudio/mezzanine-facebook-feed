@@ -1,0 +1,8 @@
+{
+  "bumpFiles": [
+    {
+      "filename": "fbfeed/__init__.py",
+      "updater": "regex-updater.js"
+    }
+  ]
+}
