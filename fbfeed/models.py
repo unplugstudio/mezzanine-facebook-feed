@@ -105,7 +105,12 @@ class Access(TimeStamped):
         Build the URL that invokes the Facebook login dialog
         """
         return "https://www.facebook.com/v6.0/dialog/oauth?" + urlencode(
-            {"client_id": self.app_id, "redirect_uri": self.get_redirect_url(), "state": self.id}
+            {
+                "client_id": self.app_id,
+                "redirect_uri": self.get_redirect_url(),
+                "state": self.id,
+                "scope": settings.FACEBOOK_LOGIN_SCOPE,
+            }
         )
 
     def get_token_from_code(self, code):
