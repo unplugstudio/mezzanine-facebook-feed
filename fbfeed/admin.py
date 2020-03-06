@@ -35,6 +35,10 @@ class AccessAdmin(admin.ModelAdmin):
         """
         Process the request after the user has logged into Facebook
         """
+        if request.GET.get("error_message"):
+            self.message_user(request, request.GET["error_message"])
+            return redirect(admin_url(Access, "changelist"))
+
         code = request.GET.get("code")
         access = get_object_or_404(Access, id=request.GET.get("state", 0))
         try:
